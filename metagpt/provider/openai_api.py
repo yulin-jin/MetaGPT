@@ -88,7 +88,7 @@ class OpenAILLM(BaseLLM):
 
     async def _achat_completion_stream(self, messages: list[dict], timeout=USE_CONFIG_TIMEOUT) -> str:
         response: AsyncStream[ChatCompletionChunk] = await self.aclient.chat.completions.create(
-            **self._cons_kwargs(messages, timeout=self.get_timeout(timeout)), stream=True
+            **self._cons_kwargs(messages, timeout=timeout), stream=True
         )
         usage = None
         collected_messages = []
